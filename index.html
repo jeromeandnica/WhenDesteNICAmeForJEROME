@@ -71,4 +71,113 @@
 
     .btn{
       display:inline-block;
-      background:linear-gradient(90deg,var(--accent),#c79
+      background:linear-gradient(90deg,var(--accent),#c79a7e);
+      color:white;
+      padding:.65rem 1.2rem;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:600;
+      box-shadow:0 6px 18px rgba(184,139,111,0.18);
+    }
+
+    /* RSVP form */
+    form{display:flex;flex-direction:column;gap:.6rem}
+    input, select, textarea{
+      padding:.7rem;
+      border-radius:10px;
+      border:1px solid #eee;
+      font-size:0.95rem;
+      width:100%;
+    }
+    label{font-size:.85rem;color:var(--muted)}
+
+    footer{font-size:.85rem;color:var(--muted);text-align:center;margin-top:1rem}
+
+    /* responsive */
+    @media (max-width:700px){
+      .two-col{grid-template-columns:1fr}
+      .names{font-size:1.6rem}
+    }
+  </style>
+</head>
+<body>
+  <main class="site" role="main">
+
+    <!-- Hero card -->
+    <section class="card hero" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="names">Jerome &amp; Nica</h1>
+      <p class="date">Save the date — October 10, 2025</p>
+
+      <p style="margin-top:1rem;color:var(--muted);max-width:65ch;margin-left:auto;margin-right:auto;">
+        We’re excited to celebrate with family & friends. This site will have venue details, gift registry, and RSVP.
+      </p>
+
+      <div style="margin-top:1.25rem;" class="center">
+        <a class="btn" href="#rsvp">RSVP Now</a>
+      </div>
+    </section>
+
+    <!-- Info cards -->
+    <section class="card">
+      <div class="two-col">
+        <div>
+          <h3 style="margin:0 0 .4rem 0">Ceremony</h3>
+          <p style="margin:0;color:var(--muted)">St. Mary’s Church<br>10:00 AM</p>
+        </div>
+        <div>
+          <h3 style="margin:0 0 .4rem 0">Reception</h3>
+          <p style="margin:0;color:var(--muted)">The Glasshouse Banquet Hall<br>12:30 PM onwards</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="card" aria-labelledby="rsvp-title">
+      <h2 id="rsvp-title" style="margin-top:0">RSVP</h2>
+      <p style="color:var(--muted);margin-top:0;margin-bottom:.75rem;">Please let us know if you can join us. (Test form — replace action with your Formspree or API endpoint)</p>
+
+      <!-- Replace the action URL with your own Formspree / API endpoint -->
+      <form id="rsvp-form" method="POST" action="https://formspree.io/f/your-form-id">
+        <label for="name">Full name</label>
+        <input id="name" name="name" type="text" placeholder="Jane Doe" required>
+
+        <label for="attending">Will you attend?</label>
+        <select id="attending" name="attending" required>
+          <option value="">Select...</option>
+          <option value="yes">Yes — I will attend</option>
+          <option value="no">Sorry — I cannot attend</option>
+        </select>
+
+        <label for="guests">Number of guests (including you)</label>
+        <input id="guests" name="guests" type="number" min="1" value="1">
+
+        <label for="message">Message (optional)</label>
+        <textarea id="message" name="message" rows="3" placeholder="Dietary notes, love note, etc."></textarea>
+
+        <div style="margin-top:.6rem;">
+          <button type="submit" class="btn" style="border:none">Send RSVP</button>
+        </div>
+      </form>
+
+      <p id="rsvp-note" style="color:var(--muted);font-size:.9rem;margin-top:.75rem;">
+        Tip: Replace the form action with your Formspree URL, or later point it to your Flask API endpoint.
+      </p>
+    </section>
+
+    <footer>
+      © Jerome &amp; Nica — Invitation • Built with ❤️
+    </footer>
+  </main>
+
+  <!-- Minimal JS: show a thank-you message after submit (works for demo only) -->
+  <script>
+    const form = document.getElementById('rsvp-form');
+    form.addEventListener('submit', (e) => {
+      // let actual form submit proceed (to Formspree). For local testing you can preventDefault:
+      // e.preventDefault();
+      // alert('RSVP submitted (demo). Replace form action with your endpoint to store responses.');
+      // Or let it submit to the action URL.
+    });
+  </script>
+</body>
+</html>
